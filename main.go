@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"os"
+	"runtime"
 	"runtime/pprof"
 
 	"github.com/therecipe/qt/core"
@@ -40,6 +41,9 @@ func main() {
 	window := widgets.NewQMainWindow(nil, 0)
 	window.SetFixedSize2(250, 200)
 	window.SetWindowTitle("My Qt App with changes")
+	if runtime.GOOS == "darwin" {
+		window.SetUnifiedTitleAndToolBarOnMacDefault(true)
+	}
 
 	widget := widgets.NewQWidget(nil, 0)
 	widget.SetLayout(widgets.NewQVBoxLayout())
